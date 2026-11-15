@@ -226,7 +226,7 @@ form .btn { background: var(--blue); color: #fff; }
 .sound-btn {
   position: fixed;
   bottom: 18px;
-  right: 18px;
+  left: 18px;
   z-index: 200;
   background: var(--navy);
   color: #fff;
