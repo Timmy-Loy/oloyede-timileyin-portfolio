@@ -40,7 +40,7 @@ profile.jpg      (my photo)
 project1.jpg     (project images)
 project2.jpg
 project3.jpg
-ambient.wav      (background sound; ambient.mp3 is used first if added)
+ambient.wav      
 ```
 
 ## How to run it
