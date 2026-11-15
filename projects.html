@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A showcase of my web development projects.">
+  <title>Projects | Student Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Timileyin <span>Oloyede</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+    <nav id="nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="projects.html" class="active">Projects</a></li>
+        <li><a href="planner.html">Academic Planner</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">My Projects</h1>
+    <p class="lead">Sample projects I have worked on while learning web development. The links will be updated with the real demos and repositories.</p>
+
+    <section class="grid grid-3">
+      <article class="card project-card">
+        <img src="project1.jpg" alt="Design mockup of the fashion business website homepage">
+        <div class="body">
+          <h2>Fashion Business Website</h2>
+          <p><span class="tag">HTML</span><span class="tag">CSS Grid</span><span class="tag">JavaScript</span></p>
+          <p>A responsive website for a small fashion brand. It has a product gallery, a brand story section and an order enquiry form that checks the customer's details before it is submitted.</p>
+          <div class="links">
+            <a href="https://example.com/fashion-site" target="_blank" rel="noopener">Live Demo</a>
+            <a href="https://github.com/Timmy-Loy/student-portfolio" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project-card">
+        <img src="project2.jpg" alt="Design mockup of the Smart Weather Planner dashboard">
+        <div class="body">
+          <h2>Smart Weather Planner</h2>
+          <p><span class="tag">JavaScript</span><span class="tag">Weather API</span><span class="tag">DOM</span></p>
+          <p>A tool that predicts the weather for the coming days and compares it with your schedule. If bad weather could affect an activity, it notifies you first and only adjusts your schedule after you give permission.</p>
+          <div class="links">
+            <a href="https://example.com/weather-planner" target="_blank" rel="noopener">Live Demo</a>
+            <a href="https://github.com/Timmy-Loy/student-portfolio" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+
+      <article class="card project-card">
+        <img src="project3.jpg" alt="Design mockup of my personal blog homepage">
+        <div class="body">
+          <h2>Personal Blog</h2>
+          <p><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Flexbox</span></p>
+          <p>A simple blog where I write about student life and what I am learning in cyber security. It has a post list, a clean reading layout and a contact link for readers.</p>
+          <div class="links">
+            <a href="https://example.com/my-blog" target="_blank" rel="noopener">Live Demo</a>
+            <a href="https://github.com/Timmy-Loy/student-portfolio" target="_blank" rel="noopener">GitHub</a>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <section>
+      <h2>Project Summary</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">Project</th><th scope="col">Technologies</th><th scope="col">Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Fashion Business Website</td><td>HTML, CSS Grid, JavaScript</td><td>Completed</td></tr>
+            <tr><td>Smart Weather Planner</td><td>JavaScript, Weather API</td><td>In progress</td></tr>
+            <tr><td>Personal Blog</td><td>HTML, CSS, Flexbox</td><td>Completed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year">2026</span> Timileyin Oloyede | COS 106 Term Project | MIVA Open University</p>
+  </footer>
+  <audio id="ambient" loop preload="none">
+    <source src="ambient.mp3" type="audio/mpeg">
+    <source src="ambient.wav" type="audio/wav">
+  </audio>
+  <button id="soundButton" class="sound-btn" type="button">Sound: Off</button>
+  <script src="script.js"></script>
+</body>
+</html>

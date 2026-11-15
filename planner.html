@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Interactive academic planner to add, complete and delete tasks.">
+  <title>Academic Planner | Student Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Timileyin <span>Oloyede</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+    <nav id="nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="planner.html" class="active">Academic Planner</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">Academic Planner</h1>
+    <p class="lead">Add assignments, study sessions and deadlines. Tick a task when it is done, or delete it. Your tasks are saved in this browser.</p>
+
+    <section class="planner-box">
+      <form id="taskForm" class="task-form" novalidate>
+        <label for="taskInput" class="sr-only" style="position:absolute;left:-9999px;">Task</label>
+        <input type="text" id="taskInput" placeholder="e.g. Submit COS 106 term project" maxlength="120" autocomplete="off">
+        <label for="taskDate" style="position:absolute;left:-9999px;">Due date</label>
+        <input type="date" id="taskDate">
+        <button type="submit" class="btn">Add Task</button>
+      </form>
+      <span id="taskError" class="error" role="alert"></span>
+
+      <div class="filters" role="group" aria-label="Filter tasks">
+        <button type="button" data-filter="all" class="active">All</button>
+        <button type="button" data-filter="active">Active</button>
+        <button type="button" data-filter="completed">Completed</button>
+      </div>
+
+      <p id="taskCounter" class="counter"></p>
+      <ul id="taskList"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year">2026</span> Timileyin Oloyede | COS 106 Term Project | MIVA Open University</p>
+  </footer>
+  <audio id="ambient" loop preload="none">
+    <source src="ambient.mp3" type="audio/mpeg">
+    <source src="ambient.wav" type="audio/wav">
+  </audio>
+  <button id="soundButton" class="sound-btn" type="button">Sound: Off</button>
+  <script src="script.js"></script>
+</body>
+</html>

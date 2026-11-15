@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="About me: education, career goals, skills and interests.">
+  <title>About Me | Student Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="index.html">Timileyin <span>Oloyede</span></a>
+    <button class="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">&#9776;</button>
+    <nav id="nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html" class="active">About Me</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="planner.html">Academic Planner</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h1 class="page-title">About Me</h1>
+    <p class="lead">A little about where I have been, where I am going and what I enjoy.</p>
+
+    <section>
+      <h2>Educational Background</h2>
+      <div class="table-wrap">
+        <table>
+          <caption class="lead" style="text-align:left;">My academic journey so far</caption>
+          <thead>
+            <tr><th scope="col">Institution</th><th scope="col">Qualification</th><th scope="col">Period</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>MIVA Open University</td><td>B.Sc. Cyber Security</td><td>2025 - Present</td></tr>
+            <tr><td>Secondary School</td><td>Senior School Certificate (WAEC/NECO)</td><td>2018 - 2024</td></tr>
+            <tr><td>Primary School</td><td>First School Leaving Certificate</td><td>2012 - 2018</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="grid grid-2">
+      <article class="card">
+        <h2>Career Aspirations</h2>
+        <p>I want to build a career protecting people and organisations from cyber threats. My goals are:</p>
+        <ol class="styled">
+          <li>Graduate with a strong foundation in cyber security.</li>
+          <li>Work as a security analyst, learning how to monitor and respond to threats.</li>
+          <li>Earn entry-level certifications such as CompTIA Security+.</li>
+          <li>Grow into a penetration tester or security engineer.</li>
+        </ol>
+      </article>
+
+      <article class="card">
+        <h2>Technical Skills</h2>
+        <div class="skill">
+          <div class="skill-label"><span>HTML</span><span>90%</span></div>
+          <div class="bar"><div data-level="90"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-label"><span>CSS</span><span>80%</span></div>
+          <div class="bar"><div data-level="80"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-label"><span>JavaScript</span><span>80%</span></div>
+          <div class="bar"><div data-level="80"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-label"><span>Python</span><span>77%</span></div>
+          <div class="bar"><div data-level="77"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-label"><span>Git &amp; GitHub</span><span>70%</span></div>
+          <div class="bar"><div data-level="70"></div></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="card" style="margin-top:1.5rem;">
+      <h2>Hobbies and Interests</h2>
+      <ul class="styled">
+        <li>Practising on beginner-friendly security labs</li>
+        <li>Listening to music and playing chess or scrabble</li>
+        <li>Learning Linux and the command line</li>
+        <li>Building small web projects</li>
+        <li>Reading cyber security news and blogs</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year">2026</span> Timileyin Oloyede | COS 106 Term Project | MIVA Open University</p>
+  </footer>
+  <audio id="ambient" loop preload="none">
+    <source src="ambient.mp3" type="audio/mpeg">
+    <source src="ambient.wav" type="audio/wav">
+  </audio>
+  <button id="soundButton" class="sound-btn" type="button">Sound: Off</button>
+  <script src="script.js"></script>
+</body>
+</html>
