@@ -1,6 +1,6 @@
 # Student Portfolio and Academic Management Website
 
-**COS 106 – Introduction to Web Technologies | Term Project**
+**COS 106 – Introduction to Web Technologies | Lab Assessment**
 **Author:** Timileyin Oloyede, MIVA Open University
 
 A responsive multi-page website that works as my personal academic portfolio and a simple student planner. It was built with HTML, CSS and JavaScript only (no frameworks).
@@ -37,10 +37,13 @@ contact.html
 style.css        (all the styling)
 script.js        (menu, planner, form validation, sound)
 profile.jpg      (my photo)
-project1.jpg     (project images)
+demo-fashion.html  (demo: fashion business website with cart and order form)
+demo-weather.html  (demo: weather planner that asks permission before changing a schedule)
+demo-blog.html     (demo: personal blog with search and read more)
+project1.jpg     (screenshots of the three demos)
 project2.jpg
 project3.jpg
-ambient.wav      
+ambient.wav      (background sound; ambient.mp3 is used first if added)
 ```
 
 ## How to run it

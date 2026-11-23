@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Notes of a Cyber Security Student | Demo Blog</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Georgia, "Times New Roman", serif; background: #f6f4ee; color: #1f2a28; line-height: 1.7; }
+    a { color: inherit; }
+
+    .back-bar { background: #1f2a28; color: #f6f4ee; font: 14px Arial, sans-serif; padding: 8px 40px; }
+    .back-bar a { text-decoration: none; }
+
+    .masthead { text-align: center; padding: 40px 20px 26px; border-bottom: 3px double #1f2a28; max-width: 1050px; margin: 0 auto; }
+    .masthead .kicker { font: 13px Arial, sans-serif; letter-spacing: 3px; text-transform: uppercase; color: #2f6f5e; }
+    .masthead h1 { font-size: 46px; margin: 6px 0; line-height: 1.15; }
+    .masthead p { font-style: italic; color: #556663; }
+
+    .layout { max-width: 1050px; margin: 0 auto; padding: 28px 20px; display: grid; grid-template-columns: 2fr 1fr; gap: 34px; }
+
+    .search { width: 100%; padding: 10px 14px; border: 2px solid #c9d3cf; border-radius: 30px; font: 15px Arial, sans-serif; margin-bottom: 20px; background: #fff; }
+    .search:focus { outline: none; border-color: #2f6f5e; }
+
+    .post { border-bottom: 1px solid #d6dbd8; padding-bottom: 20px; margin-bottom: 22px; }
+    .meta { font: 13px Arial, sans-serif; color: #6a7a77; }
+    .tag { background: #dcebe5; color: #2f6f5e; border-radius: 20px; padding: 1px 10px; margin-left: 6px; }
+    .post h2 { font-size: 27px; margin: 6px 0; line-height: 1.25; }
+    .post p { margin-bottom: 8px; }
+    .more-text { display: none; }
+    .read-btn { background: #2f6f5e; color: #fff; border: none; padding: 7px 18px; border-radius: 4px; cursor: pointer; font: bold 13px Arial, sans-serif; transition: background 0.25s; }
+    .read-btn:hover { background: #1f4f42; }
+
+    .sidebar .box { background: #fff; padding: 18px; border-radius: 10px; margin-bottom: 18px; box-shadow: 0 2px 8px rgba(31, 42, 40, 0.08); font-family: Arial, sans-serif; font-size: 15px; }
+    .sidebar h3 { font-family: Georgia, serif; margin-bottom: 6px; }
+    .sidebar ul { margin-left: 18px; }
+    .no-results { display: none; font-family: Arial, sans-serif; color: #6a7a77; }
+
+    footer { text-align: center; padding: 22px; background: #1f2a28; color: #cfd8d4; font: 14px Arial, sans-serif; }
+
+    @media (max-width: 760px) {
+      .layout { grid-template-columns: 1fr; }
+      .masthead h1 { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="back-bar"><a href="index.html">&larr; Back to my portfolio</a> &nbsp;|&nbsp; Demo project: Personal Blog</div>
+
+  <header class="masthead">
+    <p class="kicker">A student blog</p>
+    <h1>Notes of a Cyber Security Student</h1>
+    <p>What I am learning, one post at a time.</p>
+  </header>
+
+  <div class="layout">
+    <main>
+      <input class="search" type="text" id="searchBox" placeholder="Search posts by title...">
+
+      <article class="post">
+        <p class="meta">November 2026 <span class="tag">Coding</span></p>
+        <h2>My First Months of Learning to Code</h2>
+        <p>I started learning to code in September. At first, HTML and CSS felt like writing a very strict letter, where one missing bracket can break the whole page.</p>
+        <p class="more-text">Then JavaScript made the pages come alive. My biggest lesson so far is to build small and test often. Every time I add one feature and check it, I understand the code better. I also learned that reading error messages slowly usually points you straight to the problem.</p>
+        <button class="read-btn" type="button">Read more</button>
+      </article>
+
+      <article class="post">
+        <p class="meta">November 2026 <span class="tag">Security</span></p>
+        <h2>Why Strong Passwords Still Matter</h2>
+        <p>A password is the front door to your accounts. A short, simple password is like a door that anyone can open with a little patience.</p>
+        <p class="more-text">Length matters more than clever symbols, so a long phrase of random words is stronger than a short word with a few numbers. Use a different password for every account, so one leak does not open everything. A password manager can remember them for you, and turning on two-step verification adds a second lock.</p>
+        <button class="read-btn" type="button">Read more</button>
+      </article>
+
+      <article class="post">
+        <p class="meta">October 2026 <span class="tag">Security</span></p>
+        <h2>How to Spot a Phishing Email</h2>
+        <p>Phishing emails try to trick you into giving away passwords or money. They often look like they come from a bank, a school or a company you know.</p>
+        <p class="more-text">Check the sender's address carefully, because the name can look right while the address is strange. Be suspicious of messages that create panic, such as &quot;your account will be closed today&quot;. Hover over links to see where they really go, and never open attachments you did not expect. When in doubt, contact the company using a number or website you already trust.</p>
+        <button class="read-btn" type="button">Read more</button>
+      </article>
+
+      <p class="no-results" id="noResults">No posts match your search.</p>
+    </main>
+
+    <aside class="sidebar">
+      <div class="box">
+        <h3>About the author</h3>
+        <p>Hi, I am Timileyin, a cyber security student. I write about coding, online safety and what I learn in class.</p>
+      </div>
+      <div class="box">
+        <h3>Topics</h3>
+        <ul>
+          <li>Coding for beginners</li>
+          <li>Online safety</li>
+          <li>Student life</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+
+  <footer>Sample blog created for a COS 106 demo project.</footer>
+
+  <script>
+    // ----- Read more / Read less buttons -----
+    const readButtons = document.querySelectorAll(".read-btn");
+
+    for (let i = 0; i < readButtons.length; i++) {
+      readButtons[i].addEventListener("click", function () {
+        const post = readButtons[i].parentElement;
+        const moreText = post.querySelector(".more-text");
+
+        if (moreText.style.display === "block") {
+          moreText.style.display = "none";
+          readButtons[i].textContent = "Read more";
+        } else {
+          moreText.style.display = "block";
+          readButtons[i].textContent = "Read less";
+        }
+      });
+    }
+
+    // ----- Search box: hide posts that do not match -----
+    const searchBox = document.getElementById("searchBox");
+    const posts = document.querySelectorAll(".post");
+    const noResults = document.getElementById("noResults");
+
+    searchBox.addEventListener("input", function () {
+      const searchText = searchBox.value.toLowerCase().trim();
+      let shown = 0;
+
+      for (let i = 0; i < posts.length; i++) {
+        const title = posts[i].querySelector("h2").textContent.toLowerCase();
+        if (title.includes(searchText)) {
+          posts[i].style.display = "block";
+          shown++;
+        } else {
+          posts[i].style.display = "none";
+        }
+      }
+
+      noResults.style.display = shown === 0 ? "block" : "none";
+    });
+  </script>
+</body>
+</html>

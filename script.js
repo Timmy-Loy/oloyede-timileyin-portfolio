@@ -1,4 +1,4 @@
-// COS 106 Term Project - script.js
+// COS 106 Lab Assessment - script.js
 // This file controls: the mobile menu, footer year, greeting,
 // skill bars, the academic planner and the contact form validation.
 

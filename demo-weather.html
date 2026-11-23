@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Weather Planner | Demo</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: "Segoe UI", Arial, sans-serif; background: #e8f3fd; color: #16324f; line-height: 1.5; }
+    a { color: inherit; }
+
+    .top { background: linear-gradient(135deg, #0b3d73, #1e7bd6); color: #fff; padding: 18px 40px 22px; }
+    .top a { font-size: 14px; text-decoration: none; opacity: 0.9; }
+    .top h1 { font-size: 32px; margin-top: 6px; }
+    .top p { opacity: 0.85; }
+
+    main { max-width: 1100px; margin: 0 auto; padding: 24px 24px 40px; }
+    h2 { font-size: 20px; margin: 22px 0 10px; }
+
+    .alert { border-radius: 12px; padding: 16px 20px; margin-bottom: 8px; }
+    .alert.warn { background: #fff4de; border-left: 6px solid #f59e0b; }
+    .alert.ok { background: #e2f6e7; border-left: 6px solid #2e9e4f; }
+    .alert h3 { margin-bottom: 6px; }
+    .alert ul { margin: 6px 0 12px 20px; }
+    .btn { border: none; border-radius: 8px; padding: 9px 18px; font: bold 14px "Segoe UI", Arial, sans-serif; cursor: pointer; margin-right: 8px; transition: transform 0.2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.allow { background: #1e7bd6; color: #fff; }
+    .btn.keep { background: #fff; color: #16324f; border: 2px solid #9db6cf; }
+
+    .forecast { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .day-card { background: #fff; border-radius: 12px; padding: 14px 8px; text-align: center; box-shadow: 0 3px 10px rgba(22, 50, 79, 0.1); }
+    .day-card.wet { background: #dbeafc; }
+    .day-card h3 { font-size: 16px; }
+    .day-card svg { width: 54px; height: 54px; margin: 6px 0; }
+    .day-card .temp { font-size: 22px; font-weight: bold; }
+    .day-card .rain { font-size: 13px; color: #3b6a96; }
+
+    #schedule { list-style: none; }
+    .item { display: flex; align-items: center; gap: 12px; background: #fff; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; box-shadow: 0 2px 8px rgba(22, 50, 79, 0.08); }
+    .when { font-weight: bold; min-width: 90px; color: #1e7bd6; }
+    .title { flex: 1; }
+    .badge { font-size: 12px; padding: 2px 10px; border-radius: 20px; background: #e6eef7; }
+    .badge.out { background: #d9f0e0; }
+    .badge.risk { background: #ffe0b8; font-weight: bold; }
+
+    @media (max-width: 760px) {
+      .forecast { grid-template-columns: repeat(2, 1fr); }
+      .top { padding: 16px 20px; }
+      .item { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+  <!-- weather icons drawn with SVG -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="sun" viewBox="0 0 64 64">
+      <circle cx="32" cy="32" r="12" fill="#f5a623"/>
+      <g stroke="#f5a623" stroke-width="4" stroke-linecap="round">
+        <line x1="32" y1="6" x2="32" y2="14"/><line x1="32" y1="50" x2="32" y2="58"/>
+        <line x1="6" y1="32" x2="14" y2="32"/><line x1="50" y1="32" x2="58" y2="32"/>
+        <line x1="14" y1="14" x2="20" y2="20"/><line x1="44" y1="44" x2="50" y2="50"/>
+        <line x1="50" y1="14" x2="44" y2="20"/><line x1="14" y1="50" x2="20" y2="44"/>
+      </g>
+    </symbol>
+    <symbol id="cloud" viewBox="0 0 64 64">
+      <circle cx="22" cy="30" r="9" fill="#8fb4d9"/>
+      <circle cx="42" cy="28" r="12" fill="#8fb4d9"/>
+      <rect x="14" y="30" width="42" height="14" rx="7" fill="#8fb4d9"/>
+      <circle cx="46" cy="14" r="7" fill="#f5a623"/>
+    </symbol>
+    <symbol id="rain" viewBox="0 0 64 64">
+      <circle cx="22" cy="24" r="9" fill="#5b7fa6"/>
+      <circle cx="42" cy="22" r="12" fill="#5b7fa6"/>
+      <rect x="14" y="24" width="42" height="14" rx="7" fill="#5b7fa6"/>
+      <g stroke="#1e7bd6" stroke-width="3.5" stroke-linecap="round">
+        <line x1="22" y1="44" x2="19" y2="54"/><line x1="34" y1="44" x2="31" y2="54"/><line x1="46" y1="44" x2="43" y2="54"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <header class="top">
+    <a href="index.html">&larr; Back to my portfolio</a>
+    <h1>Smart Weather Planner</h1>
+    <p>Demo project. It uses sample forecast data and checks it against your schedule.</p>
+  </header>
+
+  <main>
+    <div id="alertBox"></div>
+
+    <h2>5-day forecast</h2>
+    <div class="forecast" id="forecast"></div>
+
+    <h2>My schedule</h2>
+    <ul id="schedule"></ul>
+  </main>
+
+  <script>
+    // ----- Sample data (a real version would get this from a weather API) -----
+    const forecast = [
+      { day: "Mon", condition: "Sunny", icon: "sun", temp: 31, rain: 10 },
+      { day: "Tue", condition: "Partly cloudy", icon: "cloud", temp: 30, rain: 20 },
+      { day: "Wed", condition: "Heavy rain", icon: "rain", temp: 26, rain: 85 },
+      { day: "Thu", condition: "Rain showers", icon: "rain", temp: 27, rain: 70 },
+      { day: "Fri", condition: "Sunny", icon: "sun", temp: 32, rain: 15 }
+    ];
+
+    let schedule = [
+      { id: 1, day: "Mon", time: "10:00", title: "Study group at the library", outdoor: false },
+      { id: 2, day: "Tue", time: "16:00", title: "Football practice", outdoor: true },
+      { id: 3, day: "Wed", time: "09:00", title: "Outdoor networking walk", outdoor: true },
+      { id: 4, day: "Wed", time: "14:00", title: "Online cyber security class", outdoor: false },
+      { id: 5, day: "Thu", time: "17:00", title: "Jog around the track", outdoor: true },
+      { id: 6, day: "Fri", time: "11:00", title: "Project meeting", outdoor: false }
+    ];
+
+    // changes waiting for the user's permission
+    let proposals = [];
+
+    const alertBox = document.getElementById("alertBox");
+    const forecastDiv = document.getElementById("forecast");
+    const scheduleList = document.getElementById("schedule");
+
+    function dayIndex(dayName) {
+      for (let i = 0; i < forecast.length; i++) {
+        if (forecast[i].day === dayName) {
+          return i;
+        }
+      }
+      return -1;
+    }
+
+    function isRainy(dayName) {
+      return forecast[dayIndex(dayName)].rain >= 60;
+    }
+
+    // finds the next day after this one with a low chance of rain
+    function findSafeDay(startIndex) {
+      for (let i = startIndex + 1; i < forecast.length; i++) {
+        if (forecast[i].rain < 40) {
+          return forecast[i].day;
+        }
+      }
+      return null;
+    }
+
+    // step 1: look for outdoor activities on rainy days
+    function checkWeather() {
+      proposals = [];
+      for (let i = 0; i < schedule.length; i++) {
+        const activity = schedule[i];
+        if (activity.outdoor && isRainy(activity.day)) {
+          const newDay = findSafeDay(dayIndex(activity.day));
+          if (newDay !== null) {
+            proposals.push({ id: activity.id, title: activity.title, from: activity.day, to: newDay });
+          }
+        }
+      }
+    }
+
+    // step 2: notify the user and ask for permission
+    function showAlert(message) {
+      alertBox.innerHTML = "";
+      const box = document.createElement("div");
+
+      if (proposals.length > 0) {
+        box.className = "alert warn";
+        const heading = document.createElement("h3");
+        heading.textContent = "Heads up: rain is expected on days with outdoor plans";
+        box.appendChild(heading);
+
+        const intro = document.createElement("p");
+        intro.textContent = "I can move these activities to drier days. Nothing changes unless you allow it:";
+        box.appendChild(intro);
+
+        const list = document.createElement("ul");
+        for (let i = 0; i < proposals.length; i++) {
+          const li = document.createElement("li");
+          li.textContent = proposals[i].title + ": " + proposals[i].from + " to " + proposals[i].to;
+          list.appendChild(li);
+        }
+        box.appendChild(list);
+
+        const allowButton = document.createElement("button");
+        allowButton.className = "btn allow";
+        allowButton.type = "button";
+        allowButton.textContent = "Allow changes";
+        allowButton.addEventListener("click", applyChanges);
+
+        const keepButton = document.createElement("button");
+        keepButton.className = "btn keep";
+        keepButton.type = "button";
+        keepButton.textContent = "Keep my schedule";
+        keepButton.addEventListener("click", keepSchedule);
+
+        box.appendChild(allowButton);
+        box.appendChild(keepButton);
+      } else {
+        box.className = "alert ok";
+        box.textContent = message || "All clear: no outdoor plans are affected by rain this week.";
+      }
+
+      alertBox.appendChild(box);
+    }
+
+    // step 3a: the user allowed the changes
+    function applyChanges() {
+      for (let i = 0; i < proposals.length; i++) {
+        for (let j = 0; j < schedule.length; j++) {
+          if (schedule[j].id === proposals[i].id) {
+            schedule[j].day = proposals[i].to;
+          }
+        }
+      }
+      const count = proposals.length;
+      proposals = [];
+
+      // keep the schedule in order of day and time
+      schedule.sort(function (a, b) {
+        if (dayIndex(a.day) !== dayIndex(b.day)) {
+          return dayIndex(a.day) - dayIndex(b.day);
+        }
+        return a.time.localeCompare(b.time);
+      });
+
+      showSchedule();
+      showAlert("Done! " + count + " activities were moved to drier days.");
+    }
+
+    // step 3b: the user said no
+    function keepSchedule() {
+      proposals = [];
+      showAlert("No changes made. Your schedule stays exactly as it was.");
+    }
+
+    function showForecast() {
+      for (let i = 0; i < forecast.length; i++) {
+        const f = forecast[i];
+        const card = document.createElement("div");
+        card.className = "day-card";
+        if (f.rain >= 60) {
+          card.classList.add("wet");
+        }
+        card.innerHTML =
+          "<h3>" + f.day + "</h3>" +
+          '<svg><use href="#' + f.icon + '"></use></svg>' +
+          '<div class="temp">' + f.temp + "&deg;C</div>" +
+          "<div>" + f.condition + "</div>" +
+          '<div class="rain">Rain chance: ' + f.rain + "%</div>";
+        forecastDiv.appendChild(card);
+      }
+    }
+
+    function showSchedule() {
+      scheduleList.innerHTML = "";
+      for (let i = 0; i < schedule.length; i++) {
+        const a = schedule[i];
+        const li = document.createElement("li");
+        li.className = "item";
+
+        const when = document.createElement("span");
+        when.className = "when";
+        when.textContent = a.day + " " + a.time;
+
+        const title = document.createElement("span");
+        title.className = "title";
+        title.textContent = a.title;
+
+        const type = document.createElement("span");
+        type.className = a.outdoor ? "badge out" : "badge";
+        type.textContent = a.outdoor ? "Outdoor" : "Indoor";
+
+        li.appendChild(when);
+        li.appendChild(title);
+        li.appendChild(type);
+
+        if (a.outdoor && isRainy(a.day)) {
+          const risk = document.createElement("span");
+          risk.className = "badge risk";
+          risk.textContent = "Rain risk";
+          li.appendChild(risk);
+        }
+        scheduleList.appendChild(li);
+      }
+    }
+
+    // run when the page opens
+    checkWeather();
+    showAlert();
+    showForecast();
+    showSchedule();
+  </script>
+</body>
+</html>
